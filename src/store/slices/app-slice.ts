@@ -18,6 +18,8 @@ export const loadAppDetails = createAsyncThunk(
     //@ts-ignore
     async ({ networkID, provider }: ILoadAppDetails) => {
         const daiPrice = getTokenPrice("DAI");
+        console.log("DAI:%s", daiPrice);
+
         const addresses = getAddresses(networkID);
 
         const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
@@ -27,6 +29,7 @@ export const loadAppDetails = createAsyncThunk(
         const luxorContract = new ethers.Contract(addresses.LUXOR_ADDRESS, LuxorTokenContract, provider);
 
         const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9)) * daiPrice;
+        console.log("marketPrice:%s", await Number(marketPrice));
 
         const totalSupply = (await luxorContract.totalSupply()) / Math.pow(10, 9);
         const circSupply = (await lumensContract.circulatingSupply()) / Math.pow(10, 9);
