@@ -21,12 +21,12 @@ function Calculator() {
 
     const trimmedStakingAPY = trim(stakingAPY * 100, 1);
     const trimmedLumensBalance = trim(Number(lumensBalance), 6);
-    const trimeMarketPrice = trim(marketPrice, 2);
+    const trimMarketPrice = trim(marketPrice, 2);
 
     const [lumensAmount, setLumensAmount] = useState(trimmedLumensBalance);
     const [rewardYield, setRewardYield] = useState(trimmedStakingAPY);
-    const [priceAtPurchase, setPriceAtPurchase] = useState(trimeMarketPrice);
-    const [futureMarketPrice, setFutureMarketPrice] = useState(trimeMarketPrice);
+    const [priceAtPurchase, setPriceAtPurchase] = useState(trimMarketPrice);
+    const [futureMarketPrice, setFutureMarketPrice] = useState(trimMarketPrice);
     const [days, setDays] = useState(30);
 
     const [rewardsEstimation, setRewardsEstimation] = useState("0");
@@ -41,7 +41,7 @@ function Calculator() {
 
     const calcCurrentWealth = () => {
         const lumens = Number(lumensAmount) || 0;
-        const price = parseFloat(trimeMarketPrice);
+        const price = parseFloat(trimMarketPrice);
         const amount = lumens * price;
         return trim(amount, 2);
     };
@@ -78,7 +78,7 @@ function Calculator() {
                         <Grid item>
                             <div className="calculator-card-header">
                                 <p className="calculator-card-header-title">Calculator</p>
-                                <p className="calculator-card-header-subtitle">Estimate your returns</p>
+                                <p className="calculator-card-header-subtitle">Estimated Returns</p>
                             </div>
                         </Grid>
                         <Grid item>
@@ -87,7 +87,18 @@ function Calculator() {
                                     <Grid item xs={12} sm={4} md={4} lg={4}>
                                         <div className="calculator-card-apy">
                                             <p className="calculator-card-metrics-title">LUX Price</p>
-                                            <p className="calculator-card-metrics-value">{isAppLoading ? <Skeleton width="100px" /> : `$${trimeMarketPrice}`}</p>
+                                            <p className="calculator-card-metrics-value">
+                                                {isAppLoading ? (
+                                                    <Skeleton width="100px" />
+                                                ) : (
+                                                    new Intl.NumberFormat("en-US", {
+                                                        style: "currency",
+                                                        currency: "USD",
+                                                        maximumFractionDigits: 0,
+                                                        minimumFractionDigits: 0,
+                                                    }).format(marketPrice)
+                                                )}
+                                            </p>
                                         </div>
                                     </Grid>
                                     <Grid item xs={6} sm={4} md={4} lg={4}>
@@ -154,7 +165,7 @@ function Calculator() {
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
                                             <div className="calculator-card-action-area-inp-wrap">
-                                                <p className="calculator-card-action-area-inp-wrap-title">LUX price at purchase ($)</p>
+                                                <p className="calculator-card-action-area-inp-wrap-title">LUX Purchase Price ($)</p>
                                                 <OutlinedInput
                                                     type="number"
                                                     placeholder="Amount"
@@ -164,7 +175,7 @@ function Calculator() {
                                                     labelWidth={0}
                                                     endAdornment={
                                                         <InputAdornment position="end">
-                                                            <div onClick={() => setPriceAtPurchase(trimeMarketPrice)} className="stake-card-action-input-btn">
+                                                            <div onClick={() => setPriceAtPurchase(trimMarketPrice)} className="stake-card-action-input-btn">
                                                                 <p>Current</p>
                                                             </div>
                                                         </InputAdornment>
@@ -174,7 +185,7 @@ function Calculator() {
                                         </Grid>
                                         <Grid item xs={12} sm={6}>
                                             <div className="calculator-card-action-area-inp-wrap">
-                                                <p className="calculator-card-action-area-inp-wrap-title">Future LUX market price ($)</p>
+                                                <p className="calculator-card-action-area-inp-wrap-title">Future LUX Price ($)</p>
                                                 <OutlinedInput
                                                     type="number"
                                                     placeholder="Amount"
@@ -184,7 +195,7 @@ function Calculator() {
                                                     labelWidth={0}
                                                     endAdornment={
                                                         <InputAdornment position="end">
-                                                            <div onClick={() => setFutureMarketPrice(trimeMarketPrice)} className="stake-card-action-input-btn">
+                                                            <div onClick={() => setFutureMarketPrice(trimMarketPrice)} className="stake-card-action-input-btn">
                                                                 <p>Current</p>
                                                             </div>
                                                         </InputAdornment>
@@ -195,28 +206,28 @@ function Calculator() {
                                     </Grid>
                                 </div>
                                 <div className="calculator-days-slider-wrap">
-                                    <p className="calculator-days-slider-wrap-title">{`${days} day${days > 1 ? "s" : ""}`}</p>
+                                    <p className="calculator-days-slider-wrap-title">{`${days} Day${days > 1 ? "s" : ""}`}</p>
                                     <Slider className="calculator-days-slider" min={1} max={365} value={days} onChange={(e, newValue: any) => setDays(newValue)} />
                                 </div>
                                 <div className="calculator-user-data">
                                     <div className="data-row">
-                                        <p className="data-row-name">Your initial investment</p>
+                                        <p className="data-row-name">Initial Investment</p>
                                         <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>${initialInvestment}</>}</p>
                                     </div>
                                     <div className="data-row">
-                                        <p className="data-row-name">Current wealth</p>
+                                        <p className="data-row-name">Current Wealth</p>
                                         <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>${calcCurrentWealth()}</>}</p>
                                     </div>
                                     <div className="data-row">
-                                        <p className="data-row-name">LUX rewards estimation</p>
+                                        <p className="data-row-name">LUX Rewards</p>
                                         <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{rewardsEstimation} LUX</>}</p>
                                     </div>
                                     <div className="data-row">
-                                        <p className="data-row-name">Potential return</p>
+                                        <p className="data-row-name">Return (ROI)</p>
                                         <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>${potentialReturn}</>}</p>
                                     </div>
                                     <div className="data-row">
-                                        <p className="data-row-name">Potential number of lambos</p>
+                                        <p className="data-row-name">Lambos</p>
                                         <p className="data-row-value">{isAppLoading ? <Skeleton width="80px" /> : <>{Math.floor(Number(potentialReturn) / 220000)}</>}</p>
                                     </div>
                                 </div>
