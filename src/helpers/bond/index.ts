@@ -3,6 +3,7 @@ import { CustomLPBond, LPBond } from "./lp-bond";
 import { CustomBond, StableBond } from "./stable-bond";
 
 import DaiIcon from "../../assets/tokens/DAI.svg";
+import UsdcIcon from "../../assets/tokens/USDC.svg";
 import LuxIcon from "../../assets/tokens/LUXOR.svg";
 import FtmIcon from "../../assets/tokens/FTM.svg";
 // import SoulIcon from "../../assets/tokens/SOUL.png";
@@ -22,6 +23,26 @@ export const dai = new StableBond({
         [Networks.FTM]: {
             bondAddress: "0xCf994423b39A6991e82443a8011Bf6749e19434b",
             reserveAddress: "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E",
+        },
+        [Networks.BSC]: {
+            bondAddress: "",
+            reserveAddress: "",
+        },
+    },
+    tokensInStrategy: "00000000000000000000000",
+});
+
+export const usdc = new StableBond({
+    name: "usdc",
+    displayName: "USDC",
+    bondToken: "USDC",
+    bondIconSvg: UsdcIcon,
+    bondContractABI: StableBondContract,
+    reserveContractAbi: StableReserveContract,
+    networkAddrs: {
+        [Networks.FTM]: {
+            bondAddress: "0x5351Ca511C2348738728b5E71dd76e905BeCbCb8",
+            reserveAddress: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
         },
         [Networks.BSC]: {
             bondAddress: "",
