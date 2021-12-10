@@ -156,7 +156,7 @@ export const daiLuxor2 = new LPBond({
 
 export const ftmLuxor = new CustomLPBond({
     name: "ftm_lux_lp",
-    displayName: "LUX-FTM LP",
+    displayName: "LUX-FTM",
     bondToken: "FTM",
     bondIconSvg: FtmLuxorIcon,
     bondContractABI: FtmLpBondContract,
@@ -175,4 +175,4 @@ export const ftmLuxor = new CustomLPBond({
     lpUrl: "https://app.soulswap.finance/exchange/add/ETH/0x6671E20b83Ba463F270c8c75dAe57e3Cc246cB2b",
 });
 
-export default [dai, daiLuxor, daiLuxor2, wftm, wftm2]; // ftmLuxor];
+export default [dai, daiLuxor, daiLuxor2, ftmLuxor, wftm, wftm2];
