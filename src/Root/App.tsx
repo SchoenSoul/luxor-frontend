@@ -43,7 +43,7 @@ function App() {
 
         if (whichDetails === "userBonds" && address && connected) {
             bonds.map(bond => {
-                dispatch(calculateUserBondDetails({ address, bond, provider, networkID: chainID }));
+                dispatch(calculateUserBondDetails({ address, bond, provider, networkID: 250 }));
             });
         }
 
@@ -58,7 +58,8 @@ function App() {
         loadProvider => {
             dispatch(loadAppDetails({ networkID: chainID, provider: loadProvider }));
             bonds.map(bond => {
-                dispatch(calcBondDetails({ bond, value: null, provider: loadProvider, networkID: chainID }));
+                dispatch(calcBondDetails({ bond, value: "0", provider, networkID: chainID })); // TODO
+                // dispatch(calcBondDetails({ bond, provider: JsonRpcProvider, networkID: 250 }));
             });
             tokens.map(token => {
                 dispatch(calculateUserTokenDetails({ address: "", token, provider, networkID: chainID }));

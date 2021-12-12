@@ -3,15 +3,22 @@ import { useEffect, useState } from "react";
 import allBonds from "../helpers/bond";
 import { IUserBondDetails } from "../store/slices/account-slice";
 import { Bond } from "../helpers/bond/bond";
-import { IBondDetails, IBondSlice } from "../store/slices/bond-slice";
+import { IBondDetails } from "../store/slices/bond-slice";
 import { IReduxState } from "../store/slices/state.interface";
 
 // Smash all the interfaces together to get the BondData Type
-export interface IAllBondData extends Bond, IBondDetails, IUserBondDetails {}
+export interface IAllBondData extends Bond, IBondDetails, IUserBondDetails {
+    maxBondPriceToken: number;
+}
+// Note(zx): this is a barebones interface for the state. Update to be more accurate
+interface IBondSlice {
+    status: string;
+    [key: string]: any;
+}
 
 const initialBondArray = allBonds;
 // Slaps together bond data within the account & bonding states
-function useBonds() {
+export function useBonds() {
     const bondLoading = useSelector<IReduxState, boolean>(state => state.bonding.loading);
     const bondState = useSelector<IReduxState, IBondSlice>(state => state.bonding);
     const accountBondsState = useSelector<IReduxState, { [key: string]: IUserBondDetails }>(state => state.account.bonds);

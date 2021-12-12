@@ -4,15 +4,32 @@ import { BondTableData, BondDataCard } from "./BondRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { trim } from "../../helpers";
 import useBonds from "../../hooks/bonds";
+import ClaimBonds from "./ClaimBonds";
+import isEmpty from "lodash/isEmpty";
 import "./choosebond.scss";
 import { Skeleton } from "@material-ui/lab";
+import { useAppSelector } from "src/hooks";
+
 import { IReduxState } from "../../store/slices/state.interface";
+import { IUserBondDetails } from "src/store/slices/account-slice";
 
 function ChooseBond() {
     const { bonds } = useBonds();
     const isSmallScreen = useMediaQuery("(max-width: 733px)"); // change to breakpoint query
 
     const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
+    const isAccountLoading: boolean = useAppSelector(state => state.account.loading);
+
+    const accountBonds: IUserBondDetails[] = useAppSelector(state => {
+        const withInterestDue = [];
+        for (const bond in state.account.bonds) {
+            if (state.account.bonds[bond].interestDue > 0) {
+                withInterestDue.push(state.account.bonds[bond]);
+            }
+        }
+        return withInterestDue;
+    });
+
     const luxPrice = useSelector<IReduxState, number>(state => {
         return state.app.luxPrice;
     });
@@ -23,6 +40,7 @@ function ChooseBond() {
 
     return (
         <div className="choose-bond-view">
+            {!isAccountLoading && !isEmpty(accountBonds) && <ClaimBonds activeBonds={accountBonds} />}
             <Zoom in={true}>
                 <div className="choose-bond-view-card">
                     <div className="choose-bond-view-card-header">{/* <p className="choose-bond-view-card-title"> Mint Luxor using DAI</p> */}</div>

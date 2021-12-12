@@ -10,7 +10,7 @@ import FtmIcon from "../../assets/tokens/FTM.svg";
 import DaiLuxorIcon from "../../assets/tokens/DAI.svg";
 import FtmLuxorIcon from "../../assets/tokens/FTM-LUX.svg";
 
-import { StableBondContract, DaiLpBondContract, FtmLpBondContract, WftmBondContract, StableReserveContract, SoulLpBondContract, LpReserveContract } from "../../abi";
+import { StableBondContract, DaiLpBondContract, FtmLpBondContract, WftmBondContract, StableReserveContract, LpReserveContract } from "../../abi";
 
 export const dai = new StableBond({
     name: "dai",

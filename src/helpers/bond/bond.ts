@@ -5,6 +5,11 @@ import React from "react";
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
 import { getTokenPrice } from "../token-price";
 
+export enum NetworkID {
+    Mainnet = 250,
+    Testnet = 0xfa2,
+}
+
 export interface BondOpts {
     readonly name: string; // Internal name used for references
     readonly displayName: string; // Displayname on UI

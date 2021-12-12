@@ -1,11 +1,6 @@
 import { JsonRpcProvider, StaticJsonRpcProvider } from "@ethersproject/providers";
 
-import { Bond } from "../../helpers/bond/bond";
-
-export enum NetworkID {
-    Mainnet = 250,
-    Testnet = 0xfa2,
-}
+import { Bond, NetworkID } from "../../helpers/bond/bond";
 
 export interface IJsonRPCError {
     readonly message: string;
@@ -62,6 +57,7 @@ export interface ICalcBondDetailsAsyncThunk extends IBaseBondAsyncThunk {
 
 export interface IBondAssetAsyncThunk extends IBaseBondAsyncThunk, IValueAsyncThunk {
     readonly slippage: number;
+    readonly useWFTM: boolean;
 }
 
 export interface IRedeemBondAsyncThunk extends IBaseBondAsyncThunk {

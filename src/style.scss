@@ -1,0 +1,32 @@
+.lux-card {
+    max-width: 833px;
+    .card-header {
+      width: 100%;
+      min-height: 33px;
+      margin-bottom: 10px;
+      h5 {
+        font-weight: 600 !important;
+      }
+    }
+  
+    .help-text {
+      margin: 10px 0px;
+    }
+  
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      margin: 12px 0px;
+    }
+  
+    .data-row-centered {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+      margin: 12px 0px;
+      .marginedBtn {
+        margin: 0.3rem;
+      }
+    }
+  }
