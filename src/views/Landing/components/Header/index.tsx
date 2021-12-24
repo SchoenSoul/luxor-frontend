@@ -38,6 +38,7 @@ function Header() {
                                         <SvgIcon viewBox="0 0 32 32" color="primary" component={Telegram} />
                                         <p>Telegram</p>
                                     </Link>
+
                                     <Link className="tooltip-item" href="https://discord.gg/DQjChB6Wa6" target="_blank">
                                         <SvgIcon color="primary" component={Discord} />
                                         <p>Discord</p>
