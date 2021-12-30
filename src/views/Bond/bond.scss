@@ -1,3 +1,5 @@
+@import "src/utilities/variables";
+
 .bond-view {
   position: absolute !important;
   width: 100%;
@@ -56,7 +58,7 @@
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
-        color: #F5C500;
+        color: $color-primary;
       }
     }
   }
@@ -71,7 +73,7 @@
       font-weight: 500;
       font-size: 20px;
       line-height: 24px;
-      color:  rgb(246, 197, 0.2);
+      color:  $color-primary;
     }
 
     .bond-price-data-value {
@@ -156,7 +158,7 @@
       border-bottom: 1px solid #FFFFFF;
 
       p{
-        color: rgb(246, 197, 0.2);
+        color: $color-primary;
       }
     }
   }
@@ -193,7 +195,7 @@
         font-family: Montserrat SemiBold;
         font-weight: 600;
         font-size: 18px;
-        color: #F5C500;
+        color: $color-primary;
       }
     }
   }

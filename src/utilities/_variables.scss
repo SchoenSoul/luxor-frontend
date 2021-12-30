@@ -1,0 +1,4 @@
+$color-primary: #f6c600 !default;
+
+$gradient-primary: linear-gradient(90deg, darken($color-primary, 20%), $color-primary);
+$gradient-primary-hover: linear-gradient(90deg, darken($color-primary, 20%) 90%, $color-primary);
