@@ -16,13 +16,15 @@ function ConnectMenu() {
         return state.pendingTransactions;
     });
 
-    let buttonText = "🔴";
+    let buttonText = "Connect Wallet";
     let clickFunc: any = connect;
     let buttonStyle = {};
+    let mainFocus = "true";
 
     if (isConnected) {
         buttonText = "🟢";
         clickFunc = disconnect;
+        mainFocus = "false";
     }
 
     if (pendingTransactions && pendingTransactions.length > 0) {
@@ -32,6 +34,7 @@ function ConnectMenu() {
 
     if (isConnected && providerChainID !== DEFAULT_NETWORK) {
         buttonText = "Wrong Network";
+        mainFocus = "true";
         buttonStyle = { backgroundColor: "rgb(255, 67, 67)" };
         clickFunc = () => {
             checkWrongNetwork();
@@ -43,7 +46,7 @@ function ConnectMenu() {
     }, [web3, connected]);
 
     return (
-        <div className="connect-button" style={buttonStyle} onClick={clickFunc}>
+        <div className="connect-button" data-focus={mainFocus} style={buttonStyle} onClick={clickFunc}>
             <p>{buttonText}</p>
             {pendingTransactions.length > 0 && (
                 <div className="connect-button-progress">
