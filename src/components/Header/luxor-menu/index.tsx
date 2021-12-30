@@ -51,7 +51,7 @@ function LuxorMenu() {
     return (
         <div className="luxor-menu-root" onMouseEnter={e => handleClick(e)} onMouseLeave={e => handleClick(e)}>
             <div className="luxor-menu-btn">
-                <p>BUY</p>
+                <p>Buy</p>
             </div>
 
             <Popper className="luxor-menu-popper" open={open} anchorEl={anchorEl} transition>
@@ -60,19 +60,19 @@ function LuxorMenu() {
                         <div className="tooltip">
                             <div className="divider" />
                             <Link className="tooltip-item" href={`https://app.soulswap.finance/swap?inputCurrency=&outputCurrency=${LUX_ADDRESS}`} target="_blank">
-                                <p>MARKET BUY LUXOR</p>
+                                <p>Market buy Luxor</p>
                             </Link>
 
                             {isEthereumAPIAvailable && (
                                 <div className="add-tokens">
                                     <div className="divider" />
-                                    <p className="add-tokens-title">ADD TOKEN TO WALLET</p>
+                                    <p className="add-tokens-title">Add token to wallet</p>
                                     <div className="divider" />
                                     <div className="tooltip-item" onClick={addTokenToWallet("LUX", LUX_ADDRESS)}>
-                                        <p>ADD LUXOR</p>
+                                        <p>Add Luxor</p>
                                     </div>
                                     <div className="tooltip-item" onClick={addTokenToWallet("LUM", LUM_ADDRESS)}>
-                                        <p>ADD LUMENS</p>
+                                        <p>Add Lumens</p>
                                     </div>
                                     {/* <div className="divider" /> */}
                                     {/* <p className="add-tokens-title">CLAIM REWARDS</p> */}
