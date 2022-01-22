@@ -7,6 +7,8 @@ import MobileDrawer from "../Drawer/mobile-drawer";
 import Drawer from "../Drawer";
 import { cubesImage } from "src/constants/img";
 import Messages from "../Messages";
+import LuxorGrid from "../../assets/images/backgroundGrid.svg";
+import LuxorSun from "../../assets/images/backgroundSun.svg";
 
 interface IViewBaseProps {
     children: React.ReactNode;
@@ -74,6 +76,10 @@ function ViewBase({ children }: IViewBaseProps) {
                     </div>
                 )} */}
                 {children}
+            </div>
+            <div className="background-artboard">
+                <img className="key" alt="" src={LuxorSun} />
+                <img className="grid" alt="" src={LuxorGrid} />
             </div>
         </div>
     );

@@ -40,4 +40,46 @@
             user-select: none;
         }
     }
+
+    .background-artboard {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        opacity: .25;
+
+        @keyframes keyAnimation {
+            from {
+                transform: translateX(-50%) rotate(-5deg) scale(1);
+            }
+            to {
+                transform: translateX(-50%) rotate(5deg) scale(1.1);
+            }
+        }
+
+        @keyframes gridReveal {
+            from {
+                clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            }
+        }
+        
+        .key {
+            animation: keyAnimation 20s infinite alternate;
+            position: absolute;
+            left: calc(50% + 140px);
+            top: 10%;
+            width: 20em;
+            transform: translateX(-50%);
+        }
+        
+        .grid {
+            animation: gridReveal 1s 1 ease-in;
+            width: 100%;
+            clip-path: polygon(0 0%, 100% 0%, 100% 100%, 0 100%);
+        }
+    }
 }
